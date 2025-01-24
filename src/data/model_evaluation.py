@@ -12,12 +12,6 @@ from src.utils.utils import load_object
 class ModelEvaluation:
     def __init__(self):
         pass
-
-    def eval_metrics(self,actual,pred):
-        rmse = np.sqrt(mean_squared_error(actual, pred))
-        mae = mean_absolute_error(actual, pred)
-        r2 = r2_score(actual, pred)
-        return rmse, mae, r2
     
     def initiate_model_evaluation(self,train_array,test_array):
         try:

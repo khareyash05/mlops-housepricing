@@ -14,3 +14,11 @@ class DataIngestionConfig:
 class DataIngestion:
     def __init__(self, config: DataIngestionConfig = None):
         self.data_config = config or DataIngestionConfig()
+
+    def fetch_and_save_data(self):
+        data = pd.read_csv(self.data_config.url)
+        os.makedirs("artifacts", exist_ok=True)
+        data.to_csv(self.data_config.raw_data_path, index=False)
+        train_data, test_data = train_test_split(data, test_size=0.25)
+        train_data.to_csv(self.data_config.train_data_path, index=False)
+        test_data.to_csv(self.data_config.test_data_path, index=False)
